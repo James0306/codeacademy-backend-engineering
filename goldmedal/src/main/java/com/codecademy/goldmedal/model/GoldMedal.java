@@ -23,6 +23,26 @@ public class GoldMedal {
     public GoldMedal() {
     }
 
+    public GoldMedal(Integer year,
+                     String city,
+                     String season,
+                     String name,
+                     String country,
+                     String gender,
+                     String sport,
+                     String discipline,
+                     String event) {
+        this.year = year;
+        this.city = city;
+        this.season = season;
+        this.name = name;
+        this.country = country;
+        this.gender = gender;
+        this.sport = sport;
+        this.discipline = discipline;
+        this.event = event;
+    }
+
     public Integer getYear() {
         return year;
     }
@@ -95,23 +115,4 @@ public class GoldMedal {
         this.event = event;
     }
 
-    public GoldMedal(Integer year,
-                     String city,
-                     String season,
-                     String name,
-                     String country,
-                     String gender,
-                     String sport,
-                     String discipline,
-                     String event) {
-        this.year = year;
-        this.city = city;
-        this.season = season;
-        this.name = name;
-        this.country = country;
-        this.gender = gender;
-        this.sport = sport;
-        this.discipline = discipline;
-        this.event = event;
-    }
 }

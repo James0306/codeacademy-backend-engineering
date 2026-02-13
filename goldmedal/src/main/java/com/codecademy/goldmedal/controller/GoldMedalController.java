@@ -2,19 +2,30 @@ package com.codecademy.goldmedal.controller;
 
 import com.codecademy.goldmedal.model.*;
 import org.apache.commons.text.WordUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.codecademy.goldmedal.repository.GoldMedalRepository;
+import com.codecademy.goldmedal.repository.CountryRepository;
+
+
 @RestController
 @RequestMapping("/countries")
 public class GoldMedalController {
     // TODO: declare references to your repositories
+    @Autowired
+    private GoldMedalRepository goldMedalRepository;
+    private CountryRepository countryRepository;
 
     // TODO: update your constructor to include your repositories
-    public GoldMedalController() {
+    public GoldMedalController(GoldMedalRepository goldMedalRepository,
+                               CountryRepository countryRepository) {
+        this.goldMedalRepository = goldMedalRepository;
+        this.countryRepository = countryRepository;
     }
 
     @GetMapping
@@ -40,22 +51,41 @@ public class GoldMedalController {
         List<GoldMedal> medalsList;
         switch (sortBy) {
             case "year":
-                medalsList = // TODO: list of medals sorted by year in the given order
+                if(ascendingOrder){
+                    medalsList = findByCountryOrderByYearAsc(countryName);
+                } else {
+                    medalsList = findByCountryOrderByYearDesc(countryName);
+                }
                 break;
             case "season":
-                medalsList = // TODO: list of medals sorted by season in the given order
+                if(ascendingOrder){
+                    medalsList = findByCountryOrderBySeasonAsc(countryName);
+                } else {
+                    medalsList = findByCountryOrderBySeasonDesc(countryName);
+                }
                 break;
             case "city":
-                medalsList = // TODO: list of medals sorted by city in the given order
+                if(ascendingOrder){
+                    medalsList = findByCountryOrderByCityAsc(countryName);
+                } else {
+                    medalsList = findByCountryOrderByCityDesc(countryName);
+                }
                 break;
             case "name":
-                medalsList = // TODO: list of medals sorted by athlete's name in the given order
+                if(ascendingOrder){
+                    medalsList = findByCountryOrderByNameAsc(countryName);
+                } else {
+                    medalsList = findByCountryOrderByNameDesc(countryName);
+                }
                 break;
             case "event":
-                medalsList = // TODO: list of medals sorted by event in the given order
+                if(ascendingOrder){
+                    medalsList = findByCountryOrderByEventAsc(countryName);
+                } else {
+                    medalsList = findByCountryOrderByEventDesc(countryName);
+                }
                 break;
             default:
-                medalsList = new ArrayList<>();
                 break;
         }
 
